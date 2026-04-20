@@ -3,22 +3,26 @@ const { readData, writeData } = require("../utils/fileHandler");
 module.exports = function (args) {
     const data = readData();
 
-    if (!data || !Array.isArray(data.tasks)) {
-        console.log("Invalid data Format");
+    const filter = args[0];
+
+    let tasks = data.tasks;
+
+    if (filter === "completed") {
+        tasks = tasks.filter(task => task.completed);
+    } else if (filter === "pending") {
+        tasks = tasks.filter(task => !task.completed);
+    }
+
+    if (tasks.length === 0) {
+        console.log("No tasks found");
         return;
     }
 
-    if (data.tasks.length === 0) {
-        console.log("No tasks Found");
-        return;
-    }
+    console.log("Tasks:\n");
 
-    console.log("Your Tasks: ");
-
-    data.tasks.forEach((task) => {
+    tasks.forEach(task => {
         console.log(
-            `${task.id} | ${task.completed ? "Done" : "Pending"} | ${task.text}`
+            `${task.id} | ${task.completed ? "Completed" : "Not Completed"} | ${task.text}`
         );
     });
-
 };

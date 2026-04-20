@@ -4,6 +4,11 @@
       "id": 1776256448539,
       "text": "Go to Gym",
       "completed": false
+    },
+    {
+      "id": 1776319093815,
+      "text": "Study",
+      "completed": false
     }
   ]
 }
