@@ -2,6 +2,10 @@
 
 A minimal command-line task tracker written in Node.js. It stores tasks in a JSON file (`data.json`) in the project root and uses only Node's built-in modules (no external dependencies).
 
+Project URL: [https://github.com/Anugrah-Singh/Task-Tracker-CLI](https://github.com/Anugrah-Singh/Task-Tracker-CLI)
+
+Roadmap URL: [https://roadmap.sh/projects/task-tracker](https://roadmap.sh/projects/task-tracker)
+
 ## Requirements
 
 - Node.js (v12+ recommended)
