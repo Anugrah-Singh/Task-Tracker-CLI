@@ -18,7 +18,11 @@ module.exports = function (args) {
 
     data.tasks.push(newTask);
 
-    writeData(data);
+    const success = writeData(data);
 
-    console.log("Task added!");
+    if (success) {
+        console.log("Task added!");
+    } else {
+        console.log("Could not save task");
+    }
 }

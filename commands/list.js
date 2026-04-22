@@ -1,9 +1,22 @@
-const { readData, writeData } = require("../utils/fileHandler");
+const readData = require("../utils/fileHandler");
 
 module.exports = function (args) {
     const data = readData();
 
+    if (!data.tasks || !Array.isArray(data.tasks)) {
+        console.log("Data is corrupted");
+        return;
+    }
+
     const filter = args[0];
+
+    //validate the filters first0
+    const validFilters = ['completed', 'pending'];
+
+    if (filter && !validFilters.includes(filter)) {
+        console.log("Invalid filter. Use 'completed' or 'pending' ");
+        return;
+    }
 
     let tasks = data.tasks;
 
@@ -18,11 +31,13 @@ module.exports = function (args) {
         return;
     }
 
-    console.log("Tasks:\n");
+    console.log("\n📋 Tasks:\n");
 
-    tasks.forEach(task => {
-        console.log(
-            `${task.id} | ${task.completed ? "Completed" : "Not Completed"} | ${task.text}`
-        );
-    });
+    console.table(
+        tasks.map(task => ({
+            ID: task.id,
+            Status: task.completed ? "Completed" : "Pending",
+            Task: task.text
+        }))
+    );
 };
