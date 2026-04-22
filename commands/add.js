@@ -1,5 +1,6 @@
 const { readData, writeData } = require("../utils/fileHandler");
 
+// Add a new task using the first positional argument as the task text.
 module.exports = function (args) {
     const taskText = args[0];
 
@@ -18,6 +19,7 @@ module.exports = function (args) {
 
     data.tasks.push(newTask);
 
+    // writeData returns boolean success; report accordingly.
     const success = writeData(data);
 
     if (success) {
@@ -25,4 +27,4 @@ module.exports = function (args) {
     } else {
         console.log("Could not save task");
     }
-}
+};

@@ -12,20 +12,23 @@ module.exports = function (args) {
         return;
     }
 
-    //this is o(n) every time will update it later
-    const task = data.tasks.find(t => String(t.id) === id); 
-    
+    // Find the task by id (string-compare to support numeric IDs passed as strings).
+    const task = data.tasks.find(t => String(t.id) === id);
+
     if (!task) {
         console.log("Task not Found!");
         return;
     }
+
+    // Accept only these status keywords to keep CLI behavior predictable.
     const validStatuses = ["completed", "pending"];
 
-    if (!validStatuses.includes(status)) {  // validate before processing
-        console.log("Invalid status. Use 'completed' or 'pending' "); 
+    if (!validStatuses.includes(status)) { // validate before processing
+        console.log("Invalid status. Use 'completed' or 'pending'");
         return;
     }
 
+    // Update completion flag based on the provided status string.
     task.completed = status === "completed";
 
     const success = writeData(data);

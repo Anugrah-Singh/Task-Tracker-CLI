@@ -1,4 +1,5 @@
-const readData = require("../utils/fileHandler");
+// Only need to read stored tasks for listing.
+const { readData } = require("../utils/fileHandler");
 
 module.exports = function (args) {
     const data = readData();
@@ -21,8 +22,10 @@ module.exports = function (args) {
     let tasks = data.tasks;
 
     if (filter === "completed") {
-        tasks = tasks.filter(task => task.completed);
+    // Print a simple header and tabular view of tasks.
+    console.log("\nTasks:\n");
     } else if (filter === "pending") {
+    // Map tasks to a shape suitable for console.table.
         tasks = tasks.filter(task => !task.completed);
     }
 
